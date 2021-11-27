@@ -42,6 +42,13 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.12.5</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -64,7 +71,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>com.example.isstracker/com.example.isstracker.HelloApplication</mainClass>
+                            <mainClass>com.example.isstracker/com.example.isstracker.App</mainClass>
                         </configuration>
                     </execution>
                 </executions>
