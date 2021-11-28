@@ -41,7 +41,6 @@ class IssNowTest {
         saveAndFlush(iss);
         final IssNow readIssNow = session.get(IssNow.class, iss.getId());
         // then
-        System.out.println(readIssNow);
         assertEquals(iss, readIssNow);
     }
 

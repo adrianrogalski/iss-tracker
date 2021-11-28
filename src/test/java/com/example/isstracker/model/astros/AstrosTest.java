@@ -52,9 +52,6 @@ class AstrosTest {
         Astros databaseRead = session.get(Astros.class, astros.getId());
 
         // then
-        System.out.println(astros);
-        System.out.println(databaseRead);
-        System.out.println(astros.equals(databaseRead));
         assertEquals(astros, databaseRead);
     }
 

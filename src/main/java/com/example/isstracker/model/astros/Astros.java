@@ -1,9 +1,7 @@
 package com.example.isstracker.model.astros;
 
 import javax.persistence.*;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 @Table(name = "people_in_space")
@@ -31,27 +29,12 @@ public class Astros {
     public String getMessage() {
         return message;
     }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
     public Integer getNumber() {
         return number;
     }
-
-    public void setNumber(Integer number) {
-        this.number = number;
-    }
-
     public List<Person> getPeople() {
-        return people;
+        return List.copyOf(people);
     }
-
-    public void setPeople(List<Person> people) {
-        this.people = people;
-    }
-
     public UUID getId() {
         return id;
     }
