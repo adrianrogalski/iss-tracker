@@ -16,11 +16,13 @@ public class IssNow {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "iss_position_id")
     private IssPosition iss_position;
+    private double iss_velocity;
 
-    public IssNow(String message, long timestamp, IssPosition iss_position) {
+    public IssNow(String message, long timestamp, IssPosition iss_position, double iss_velocity) {
         this.message = message;
         this.timestamp = timestamp;
         this.iss_position = iss_position;
+        this.iss_velocity = iss_velocity;
     }
 
     public IssNow() {
@@ -35,11 +37,11 @@ public class IssNow {
     public IssPosition getIss_position() {
         return iss_position;
     }
-
-
-
     public UUID getId() {
         return id;
+    }
+    public double getIss_velocity() {
+        return iss_velocity;
     }
 
     @Override
@@ -47,12 +49,12 @@ public class IssNow {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         IssNow issNow = (IssNow) o;
-        return timestamp == issNow.timestamp && id.equals(issNow.id) && Objects.equals(message, issNow.message) && Objects.equals(iss_position, issNow.iss_position);
+        return timestamp == issNow.timestamp && Double.compare(issNow.iss_velocity, iss_velocity) == 0 && id.equals(issNow.id) && Objects.equals(message, issNow.message) && Objects.equals(iss_position, issNow.iss_position);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, message, timestamp, iss_position);
+        return Objects.hash(id, message, timestamp, iss_position, iss_velocity);
     }
 
     @Override

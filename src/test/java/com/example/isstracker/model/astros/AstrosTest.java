@@ -1,21 +1,15 @@
 package com.example.isstracker.model.astros;
 
-import com.example.isstracker.model.issnow.IssNow;
-import com.example.isstracker.model.issnow.IssPosition;
 import com.example.isstracker.repository.ApiRepository;
 import com.example.isstracker.repository.SimpleGenericRepository;
 import com.example.isstracker.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.query.NativeQuery;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import java.io.IOException;
 import java.net.URI;
 

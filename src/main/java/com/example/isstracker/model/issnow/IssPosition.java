@@ -6,7 +6,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "iss_position")
-public class IssPosition {
+public class IssPosition{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
@@ -25,16 +25,8 @@ public class IssPosition {
         return latitude;
     }
 
-    public void setLatitude(String latitude) {
-        this.latitude = latitude;
-    }
-
     public String getLongitude() {
         return longitude;
-    }
-
-    public void setLongitude(String longitude) {
-        this.longitude = longitude;
     }
 
     public UUID getId() {

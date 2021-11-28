@@ -9,8 +9,6 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class ApiRepositoryTest {
 
     @Test
