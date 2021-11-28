@@ -15,6 +15,7 @@
     </properties>
 
     <dependencies>
+        <!--   JAVAFX     -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
@@ -30,6 +31,8 @@
             <artifactId>controlsfx</artifactId>
             <version>11.1.0</version>
         </dependency>
+
+        <!--   UNIT TESTS    -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
@@ -42,11 +45,29 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+
+        <!--    JSON MAPPING    -->
         <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>2.12.5</version>
+        </dependency>
+
+        <!-- DATABASE -->
+        <!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.200</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.4.32.Final</version>
         </dependency>
 
     </dependencies>

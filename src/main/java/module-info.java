@@ -8,6 +8,9 @@ module com.example.isstracker {
     requires com.fasterxml.jackson.databind;
     requires com.fasterxml.jackson.annotation;
 
+    requires org.hibernate.orm.core;
+    requires org.hibernate.commons.annotations;
+
     opens com.example.isstracker to javafx.fxml;
     exports com.example.isstracker;
     exports com.example.isstracker.model.astros to com.fasterxml.jackson.databind;
