@@ -8,11 +8,12 @@ import java.util.UUID;
 @Table(name = "iss")
 public class IssNow {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
     private String message;
     private long timestamp;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "iss_position_id")
     private IssPosition iss_position;
 
@@ -47,6 +48,11 @@ public class IssNow {
 
     public void setIss_position(IssPosition iss_position) {
         this.iss_position = iss_position;
+    }
+
+
+    public UUID getId() {
+        return id;
     }
 
     @Override

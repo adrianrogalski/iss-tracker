@@ -1,8 +1,6 @@
 package com.example.isstracker.model.issnow;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -10,6 +8,7 @@ import java.util.UUID;
 @Table(name = "iss_position")
 public class IssPosition {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     private String latitude;
     private String longitude;
@@ -37,6 +36,11 @@ public class IssPosition {
     public void setLongitude(String longitude) {
         this.longitude = longitude;
     }
+
+    public UUID getId() {
+        return id;
+    }
+
 
     @Override
     public boolean equals(Object o) {
