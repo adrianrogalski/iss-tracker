@@ -1,8 +1,16 @@
 package com.example.isstracker.model.issnow;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Objects;
+import java.util.UUID;
 
+@Entity
+@Table(name = "iss_position")
 public class IssPosition {
+    @Id
+    private UUID id;
     private String latitude;
     private String longitude;
 
@@ -35,12 +43,12 @@ public class IssPosition {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         IssPosition that = (IssPosition) o;
-        return latitude.equals(that.latitude) && longitude.equals(that.longitude);
+        return id.equals(that.id) && Objects.equals(latitude, that.latitude) && Objects.equals(longitude, that.longitude);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(latitude, longitude);
+        return Objects.hash(id, latitude, longitude);
     }
 
     @Override

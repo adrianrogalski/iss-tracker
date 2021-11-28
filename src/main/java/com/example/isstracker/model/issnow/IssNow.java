@@ -1,10 +1,19 @@
 package com.example.isstracker.model.issnow;
 
+import javax.persistence.*;
 import java.util.Objects;
+import java.util.UUID;
 
+@Entity
+@Table(name = "iss")
 public class IssNow {
+    @Id
+    private UUID id;
+
     private String message;
     private long timestamp;
+    @OneToOne
+    @JoinColumn(name = "iss_position_id")
     private IssPosition iss_position;
 
     public IssNow(String message, long timestamp, IssPosition iss_position) {
@@ -45,12 +54,12 @@ public class IssNow {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         IssNow issNow = (IssNow) o;
-        return timestamp == issNow.timestamp && message.equals(issNow.message) && iss_position.equals(issNow.iss_position);
+        return timestamp == issNow.timestamp && id.equals(issNow.id) && Objects.equals(message, issNow.message) && Objects.equals(iss_position, issNow.iss_position);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(message, timestamp, iss_position);
+        return Objects.hash(id, message, timestamp, iss_position);
     }
 
     @Override

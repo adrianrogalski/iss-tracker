@@ -10,8 +10,11 @@ module com.example.isstracker {
 
     requires org.hibernate.orm.core;
     requires org.hibernate.commons.annotations;
+    requires java.persistence;
 
     opens com.example.isstracker to javafx.fxml;
+    opens com.example.isstracker.model.issnow to org.hibernate.orm.core;
+
     exports com.example.isstracker;
     exports com.example.isstracker.model.astros to com.fasterxml.jackson.databind;
     exports com.example.isstracker.model.issnow to com.fasterxml.jackson.databind;
