@@ -14,6 +14,7 @@ module com.example.isstracker {
 
     opens com.example.isstracker to javafx.fxml;
     opens com.example.isstracker.model.issnow to org.hibernate.orm.core, com.fasterxml.jackson.databind;
+    opens com.example.isstracker.model.astros to org.hibernate.orm.core, com.fasterxml.jackson.databind;
 
     exports com.example.isstracker;
     exports com.example.isstracker.model.astros to com.fasterxml.jackson.databind;

@@ -1,14 +1,25 @@
 package com.example.isstracker.model.astros;
 
+import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
+@Entity
+@Table(name = "people_in_space")
 public class Astros {
-    private String message;
-    private Integer number;
-    private List<People> people;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
 
-    public Astros(String message, Integer number, List<People> name) {
+    private String message;
+    private int number;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "people_info_id")
+    @OrderColumn(name = "INDEX")
+    private List<Person> people;
+
+    public Astros(String message, Integer number, List<Person> name) {
         this.message = message;
         this.number = number;
         this.people = name;
@@ -33,33 +44,28 @@ public class Astros {
         this.number = number;
     }
 
-    public List<People> getPeople() {
+    public List<Person> getPeople() {
         return people;
     }
 
-    public void setPeople(List<People> people) {
+    public void setPeople(List<Person> people) {
         this.people = people;
+    }
+
+    public UUID getId() {
+        return id;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Astros)) return false;
         Astros astros = (Astros) o;
-        return message.equals(astros.message) && number.equals(astros.number) && people.equals(astros.people);
+        return number == astros.number && id.equals(astros.id) && Objects.equals(message, astros.message) && Objects.equals(people, astros.people);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(message, number, people);
-    }
-
-    @Override
-    public String toString() {
-        return "Astros{" +
-                "message='" + message + '\'' +
-                ", number=" + number +
-                ", name=" + people +
-                '}';
+        return Objects.hash(id, message, number, people);
     }
 }

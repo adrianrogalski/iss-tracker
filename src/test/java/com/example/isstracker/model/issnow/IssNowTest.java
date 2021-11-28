@@ -16,8 +16,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class IssNowTest {
     private final SessionFactory factory = HibernateUtil.getSessionFactory();
-    final URI ISS_URI = URI.create("http://api.open-notify.org/iss-now.json");
-    ApiRepository<IssNow> issNowRepo = new ApiRepository(IssNow.class);
+    private final URI ISS_URI = URI.create("http://api.open-notify.org/iss-now.json");
+    private final ApiRepository<IssNow> issNowRepo = new ApiRepository(IssNow.class);
     private Session session;
     private Transaction transaction;
 
@@ -41,6 +41,7 @@ class IssNowTest {
         saveAndFlush(iss);
         final IssNow readIssNow = session.get(IssNow.class, iss.getId());
         // then
+        System.out.println(readIssNow);
         assertEquals(iss, readIssNow);
     }
 

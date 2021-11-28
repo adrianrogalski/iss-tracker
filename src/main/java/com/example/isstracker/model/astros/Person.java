@@ -1,17 +1,24 @@
 package com.example.isstracker.model.astros;
 
+import javax.persistence.*;
 import java.util.Objects;
+import java.util.UUID;
 
-public class People {
+@Entity
+@Table(name = "people_info")
+public class Person {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
     private String name;
     private String craft;
 
-    public People(String name, String craft) {
+    public Person(String name, String craft) {
         this.name = name;
         this.craft = craft;
     }
 
-    public People() {
+    public Person() {
     }
 
     public String getName() {
@@ -30,24 +37,20 @@ public class People {
         this.craft = craft;
     }
 
+    public UUID getId() {
+        return id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        People people = (People) o;
-        return name.equals(people.name) && craft.equals(people.craft);
+        if (!(o instanceof Person)) return false;
+        Person person = (Person) o;
+        return id.equals(person.id) && Objects.equals(name, person.name) && Objects.equals(craft, person.craft);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, craft);
-    }
-
-    @Override
-    public String toString() {
-        return "People{" +
-                "name='" + name + '\'' +
-                ", craft='" + craft + '\'' +
-                '}';
+        return Objects.hash(id, name, craft);
     }
 }
