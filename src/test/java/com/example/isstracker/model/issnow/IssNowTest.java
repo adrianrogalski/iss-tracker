@@ -64,8 +64,8 @@ class IssNowTest {
         saveAndFlush(iss);
         final IssNow readIssNow = session.get(IssNow.class, iss.getId());
         IssPosition position = readIssNow.getIss_position();
-        assertFalse(position.getLatitude().isEmpty());
-        assertFalse(position.getLongitude().isEmpty());
+        assertFalse(position.getLatitude().isNaN());
+        assertFalse(position.getLongitude().isNaN());
     }
 
     private void saveAndFlush(IssNow iss) {

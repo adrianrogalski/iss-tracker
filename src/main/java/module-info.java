@@ -4,6 +4,8 @@ module com.example.isstracker {
 
     requires org.controlsfx.controls;
     requires java.net.http;
+    requires java.naming;
+    requires java.sql;
     requires com.fasterxml.jackson.core;
     requires com.fasterxml.jackson.databind;
     requires com.fasterxml.jackson.annotation;

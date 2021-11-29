@@ -4,6 +4,7 @@ import com.example.isstracker.model.astros.Astros;
 import com.example.isstracker.model.astros.Person;
 import com.example.isstracker.model.issnow.IssNow;
 import com.example.isstracker.model.issnow.IssPosition;
+import com.example.isstracker.model.issnow.Velocity;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
@@ -38,6 +39,7 @@ public class HibernateUtil {
         configuration.addAnnotatedClass(IssPosition.class);
         configuration.addAnnotatedClass(Astros.class);
         configuration.addAnnotatedClass(Person.class);
+        configuration.addAnnotatedClass(Velocity.class);
     }
 
     private static Properties loadHibernateProperties() throws IOException {

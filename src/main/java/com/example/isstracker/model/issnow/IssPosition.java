@@ -21,12 +21,12 @@ public class IssPosition{
     public IssPosition() {
     }
 
-    public String getLatitude() {
-        return latitude;
+    public Double getLatitude() {
+        return Double.parseDouble(latitude);
     }
 
-    public String getLongitude() {
-        return longitude;
+    public Double getLongitude() {
+        return Double.parseDouble(longitude);
     }
 
     public UUID getId() {
