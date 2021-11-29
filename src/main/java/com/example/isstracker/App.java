@@ -16,6 +16,16 @@ import java.util.Optional;
 
 public class App {
     public static void main(String[] args) {
-
+        final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        IssVelocityInterface velocityCalculator = new IssVelocityService(sessionFactory);
+        IssRepoInterface issRepoInterface = new IssRepoService(sessionFactory);
+        System.out.println("\tInternational Space Station Tracker\t");
+        System.out.println("\t-----------------------------------\t");
+        System.out.println("\tActual Data\t");
+        issRepoInterface.getCurrentIssData();
+        System.out.println("\tlatitude: " + issRepoInterface.getLatitude() + '\t');
+        System.out.println("\tlongitude: " + issRepoInterface.getLongitude() + '\t');
+        System.out.println("\tat time: " + issRepoInterface.getTimestamp() + '\t');
+        System.out.println("\t velocity: " + velocityCalculator.getVelocity().getValue() + "m/s" + '\t');
     }
 }
