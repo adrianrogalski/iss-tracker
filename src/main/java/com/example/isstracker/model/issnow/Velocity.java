@@ -1,12 +1,11 @@
 package com.example.isstracker.model.issnow;
 
-import com.example.isstracker.util.TimestampConverter;
+import com.example.isstracker.util.FormattedTimestamp;
 
 import javax.persistence.*;
+import java.time.ZoneId;
 import java.util.Objects;
 import java.util.UUID;
-
-import static com.example.isstracker.util.TimestampConverter.convert;
 
 @Entity
 @Table(name = "velocities")
@@ -16,12 +15,20 @@ public class Velocity {
     private UUID id;
     private double value;
     private long timestamp;
+    private long deltaTime;
 
-    public Velocity(double value, long timestamp) {
+    public Velocity(double value, long timestamp, long deltaTime) {
         this.value = value;
         this.timestamp = timestamp;
+        this.deltaTime = deltaTime;
     }
+
     public Velocity() {
+
+    }
+
+    public UUID getId() {
+        return id;
     }
 
     public double getValue() {
@@ -32,8 +39,12 @@ public class Velocity {
         return timestamp;
     }
 
-    public String getDateTimeTimestamp() {
-        return convert(timestamp);
+    public String getFormattedTimestamp() {
+        return FormattedTimestamp.of(timestamp).get().toString();
+    }
+
+    public long getDeltaTime() {
+        return deltaTime;
     }
 
     @Override
@@ -41,19 +52,12 @@ public class Velocity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Velocity velocity = (Velocity) o;
-        return Double.compare(velocity.value, value) == 0 && timestamp == velocity.timestamp;
+        return Double.compare(velocity.value, value) == 0 && timestamp == velocity.timestamp && deltaTime == velocity.deltaTime && id.equals(velocity.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(value, timestamp);
+        return Objects.hash(id, value, timestamp, deltaTime);
     }
 
-    @Override
-    public String toString() {
-        return "Velocity{" +
-                "value=" + value +
-                ", timestamp=" + timestamp +
-                '}';
-    }
 }

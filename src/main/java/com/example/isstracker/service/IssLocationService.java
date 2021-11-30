@@ -2,20 +2,20 @@ package com.example.isstracker.service;
 
 import com.example.isstracker.model.issnow.IssNow;
 import com.example.isstracker.repository.ApiRepository;
+import com.example.isstracker.util.FormattedTimestamp;
 import org.hibernate.SessionFactory;
 
 import java.io.IOException;
 import java.net.URI;
+import java.time.ZoneId;
 import java.util.Optional;
 
-import static com.example.isstracker.util.TimestampConverter.convert;
-
-public class IssRepoService implements IssRepoInterface {
+public class IssLocationService implements IssLocationServiceInterface {
     private final SessionFactory factory;
     private final URI ISS_URI = URI.create("http://api.open-notify.org/iss-now.json");
     private final ApiRepository<IssNow> issNowRepo = new ApiRepository(IssNow.class);
     private Optional<IssNow> data;
-    public IssRepoService(SessionFactory factory) {
+    public IssLocationService(SessionFactory factory) {
         this.factory = factory;
     }
 
@@ -44,8 +44,10 @@ public class IssRepoService implements IssRepoInterface {
 
     public String getTimestamp() {
         if (data.isPresent()) {
-            return convert(data.get().getTimestamp());
+            return FormattedTimestamp.of(data.get().getTimestamp()).get().toString();
         }
         return "couldn't convert time properly";
     }
+
+
 }

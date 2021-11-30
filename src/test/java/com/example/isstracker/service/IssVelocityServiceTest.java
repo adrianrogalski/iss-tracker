@@ -14,13 +14,15 @@ class IssVelocityServiceTest {
     private final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
     private final IssVelocityInterface issVelocity =
             new IssVelocityService(sessionFactory);
+    private static final int DELTA_TIME = 5000;
+
     @Test
     void shouldSaveVelocityIntoDatabase() {
-        Velocity velocity = issVelocity.getVelocity();
-        Session session = sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
-        Query<Velocity> from_velocity = session.createQuery("from Velocity");
-        Velocity databaseVelocity = from_velocity.getSingleResult();
+        final Velocity velocity = issVelocity.getVelocity(DELTA_TIME);
+        final Session session = sessionFactory.openSession();
+        final Transaction transaction = session.beginTransaction();
+        final Query<Velocity> from_velocity = session.createQuery("from Velocity");
+        final Velocity databaseVelocity = from_velocity.getSingleResult();
         assertEquals(velocity, databaseVelocity);
         transaction.rollback();
         session.close();
@@ -28,10 +30,10 @@ class IssVelocityServiceTest {
 
     @Test
     void shouldCalculateVelocityDifferentThanZero(){
-        Session session = sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
+        final Session session = sessionFactory.openSession();
+        final Transaction transaction = session.beginTransaction();
         // given
-        double velocity = issVelocity.getVelocity().getValue();
+        double velocity = issVelocity.getVelocity(DELTA_TIME).getValue();
         // when, then
         assertFalse(velocity == 0.0);
         transaction.rollback();

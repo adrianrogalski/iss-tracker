@@ -1,6 +1,6 @@
 package com.example.isstracker.service;
 
-public interface IssRepoInterface {
+public interface IssLocationServiceInterface {
     void getCurrentIssData();
     double getLatitude();
     double getLongitude();

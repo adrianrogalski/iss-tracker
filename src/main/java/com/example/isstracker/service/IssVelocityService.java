@@ -9,6 +9,7 @@ import org.hibernate.Transaction;
 
 import java.io.IOException;
 import java.net.URI;
+import java.util.List;
 
 import static java.lang.Math.*;
 import static java.lang.Math.cos;
@@ -25,13 +26,11 @@ public class IssVelocityService implements IssVelocityInterface {
     }
 
     @Override
-    public Velocity getVelocity() {
+    public Velocity getVelocity(int deltaTimeMills) {
         try {
-            final IssNow issT1 = issNowRepo.findByURI(ISS_URI).get();
-            sleep(5000);
-            final IssNow issT2 = issNowRepo.findByURI(ISS_URI).get();
-            double velocityValue = calculateVelocity(issT1, issT2);
-            Velocity velocity = new Velocity(velocityValue, issT1.getTimestamp());
+            List<IssNow> issPair = generatePairOfIss(deltaTimeMills);
+            double velocityValue = calculateVelocity(issPair.get(0), issPair.get(1));
+            Velocity velocity = new Velocity(velocityValue, issPair.get(0).getTimestamp(), deltaTimeMills);
             saveIntoDatabase(velocity);
             return velocity;
         } catch (InterruptedException | IOException e) {
@@ -47,9 +46,11 @@ public class IssVelocityService implements IssVelocityInterface {
         session.close();
     }
 
-    @Override
-    public double getAverageVelocity() {
-        return 0;
+    private List<IssNow> generatePairOfIss(int millis) throws IOException, InterruptedException {
+        final IssNow issT1 = issNowRepo.findByURI(ISS_URI).get();
+        sleep(millis);
+        final IssNow issT2 = issNowRepo.findByURI(ISS_URI).get();
+        return List.of(issT1, issT2);
     }
 
     private Double calculateVelocity(IssNow issT1, IssNow issT2) {
