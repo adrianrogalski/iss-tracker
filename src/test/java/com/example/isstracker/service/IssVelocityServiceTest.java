@@ -12,8 +12,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class IssVelocityServiceTest {
     private final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-    private final IssVelocityInterface issVelocity =
-            new IssVelocityService(sessionFactory);
+    private final IssVelocityService issVelocity =
+            new IssVelocityServiceApi(sessionFactory);
     private static final int DELTA_TIME = 5000;
 
     @Test
