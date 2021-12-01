@@ -1,9 +1,9 @@
 package com.example.isstracker;
 import com.example.isstracker.model.issnow.Velocity;
-import com.example.isstracker.service.IssLocationService;
-import com.example.isstracker.service.IssLocationServiceApi;
-import com.example.isstracker.service.IssVelocityService;
-import com.example.isstracker.service.IssVelocityServiceApi;
+import com.example.isstracker.service.iss.IssLocationService;
+import com.example.isstracker.service.iss.IssLocationServiceApi;
+import com.example.isstracker.service.iss.IssVelocityService;
+import com.example.isstracker.service.iss.IssVelocityServiceApi;
 import com.example.isstracker.util.HibernateUtil;
 import org.hibernate.SessionFactory;
 

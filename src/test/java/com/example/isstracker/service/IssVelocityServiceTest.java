@@ -1,6 +1,8 @@
 package com.example.isstracker.service;
 
 import com.example.isstracker.model.issnow.Velocity;
+import com.example.isstracker.service.iss.IssVelocityService;
+import com.example.isstracker.service.iss.IssVelocityServiceApi;
 import com.example.isstracker.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

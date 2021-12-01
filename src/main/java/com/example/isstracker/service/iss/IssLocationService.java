@@ -1,4 +1,4 @@
-package com.example.isstracker.service;
+package com.example.isstracker.service.iss;
 
 public interface IssLocationService {
     void getCurrentIssData();
