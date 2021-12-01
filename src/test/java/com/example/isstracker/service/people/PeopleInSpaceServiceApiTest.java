@@ -1,6 +1,7 @@
 package com.example.isstracker.service.people;
 
 import com.example.isstracker.model.astros.Astros;
+import com.example.isstracker.model.astros.Person;
 import com.example.isstracker.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -34,6 +35,20 @@ class PeopleInSpaceServiceApiTest {
         transaction.rollback();
         session.close();
         assertFalse(resultList.isEmpty());
+    }
+
+    @Test
+    void returnsListOfPeople() {
+        PeopleInSpaceService peopleInSpaceService = new PeopleInSpaceServiceApi(factory);
+        List<Person> peopleInSpace = peopleInSpaceService.peopleInSpace();
+        assertFalse(peopleInSpace.isEmpty());
+    }
+
+    @Test
+    void returnsListOfPeopleOnIss() {
+        PeopleInSpaceService peopleInSpaceService = new PeopleInSpaceServiceApi(factory);
+        List<Person> peopleOnIss = peopleInSpaceService.peopleOnIss();
+        assertFalse(peopleOnIss.isEmpty());
     }
 
 }

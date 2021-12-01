@@ -13,6 +13,7 @@ import org.hibernate.query.Query;
 import java.io.IOException;
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PeopleInSpaceServiceApi implements PeopleInSpaceService {
     private final static URI ASTROS_URI = URI.create("http://api.open-notify.org/astros.json");
@@ -35,9 +36,45 @@ public class PeopleInSpaceServiceApi implements PeopleInSpaceService {
             } catch (InterruptedException | IOException e) {
                 throw new AstrosRepositoryObjectConversionException("Astros object couldn't be created");
             }
+        } else {
+            return astrosDatabase.get(0).getNumber();
+        }
+    }
+
+
+    @Override
+    public List<Person> peopleInSpace() {
+        Session session = factory.openSession();
+        List<Astros> astrosDatabase = session.createQuery("from Astros").getResultList();
+        if (astrosDatabase.isEmpty()) {
+            try {
+                Astros astros = peopleInSpaceRepo.findByURI(ASTROS_URI).get();
+                saveIntoDatabase(astros, session);
+                return astros.getPeople();
+            } catch (InterruptedException | IOException e) {
+                throw new AstrosRepositoryObjectConversionException("Astros object couldn't be created");
+            }
         }
         else {
-            return astrosDatabase.get(0).getNumber();
+            return astrosDatabase.get(0).getPeople();
+        }
+    }
+
+    @Override
+    public List<Person> peopleOnIss() {
+        Session session = factory.openSession();
+        List<Astros> astrosDatabase = session.createQuery("from Astros").getResultList();
+        if (astrosDatabase.isEmpty()) {
+            try {
+                Astros astros = peopleInSpaceRepo.findByURI(ASTROS_URI).get();
+                saveIntoDatabase(astros, session);
+                return astros.getPeople().stream().filter(person -> person.getCraft().equals("ISS")).collect(Collectors.toList());
+            } catch (InterruptedException | IOException e) {
+                throw new AstrosRepositoryObjectConversionException("Astros object couldn't be created");
+            }
+        }
+        else {
+            return astrosDatabase.get(0).getPeople();
         }
     }
 
@@ -46,15 +83,5 @@ public class PeopleInSpaceServiceApi implements PeopleInSpaceService {
         session.save(astros);
         transaction.commit();
         session.close();
-    }
-
-    @Override
-    public List<Person> peopleInSpace() {
-        return null;
-    }
-
-    @Override
-    public List<Person> peopleOnIss() {
-        return null;
     }
 }
