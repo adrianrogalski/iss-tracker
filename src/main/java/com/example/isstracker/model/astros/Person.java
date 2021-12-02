@@ -43,4 +43,9 @@ public class Person {
     public int hashCode() {
         return Objects.hash(id, name, craft);
     }
+
+    @Override
+    public String toString() {
+        return "name: " + name + " craft: '" + craft;
+    }
 }

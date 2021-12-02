@@ -13,6 +13,7 @@ import org.hibernate.query.Query;
 import java.io.IOException;
 import java.net.URI;
 import java.util.List;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 public class PeopleInSpaceServiceApi implements PeopleInSpaceService {
@@ -75,6 +76,23 @@ public class PeopleInSpaceServiceApi implements PeopleInSpaceService {
         }
         else {
             return astrosDatabase.get(0).getPeople();
+        }
+    }
+
+    private <T>List<T> astrosSupplier(Supplier<List<T>> supplier) {
+        Session session = factory.openSession();
+        List<T> astrosDatabase = session.createQuery("from Astros").getResultList();
+        if (astrosDatabase.isEmpty()) {
+            try {
+                Astros astros = peopleInSpaceRepo.findByURI(ASTROS_URI).get();
+                saveIntoDatabase(astros, session);
+                return supplier.get();
+            } catch (InterruptedException | IOException e) {
+                throw new AstrosRepositoryObjectConversionException("Astros object couldn't be created");
+            }
+        }
+        else {
+            return supplier.get();
         }
     }
 
