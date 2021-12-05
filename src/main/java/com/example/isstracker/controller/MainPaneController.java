@@ -71,7 +71,7 @@ public class MainPaneController {
 
         velocityButton.setOnAction(e -> {
             Velocity velocity = velocityCalculator.getVelocity(5000);
-            velocityTextField.setText(String.valueOf(velocity.getValue()));
+            velocityTextField.setText(String.valueOf(velocity.getValue()) + " m/s");
         });
     }
 

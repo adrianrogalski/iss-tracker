@@ -98,7 +98,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>com.example.isstracker/com.example.isstracker.App</mainClass>
+                            <mainClass>com.example.isstracker/com.example.isstracker.Main</mainClass>
                         </configuration>
                     </execution>
                 </executions>
