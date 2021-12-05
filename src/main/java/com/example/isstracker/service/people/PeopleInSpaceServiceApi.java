@@ -79,23 +79,6 @@ public class PeopleInSpaceServiceApi implements PeopleInSpaceService {
         }
     }
 
-    private <T>List<T> astrosSupplier(Supplier<List<T>> supplier) {
-        Session session = factory.openSession();
-        List<T> astrosDatabase = session.createQuery("from Astros").getResultList();
-        if (astrosDatabase.isEmpty()) {
-            try {
-                Astros astros = peopleInSpaceRepo.findByURI(ASTROS_URI).get();
-                saveIntoDatabase(astros, session);
-                return supplier.get();
-            } catch (InterruptedException | IOException e) {
-                throw new AstrosRepositoryObjectConversionException("Astros object couldn't be created");
-            }
-        }
-        else {
-            return supplier.get();
-        }
-    }
-
     private void saveIntoDatabase(Astros astros, Session session){
         Transaction transaction = session.beginTransaction();
         session.save(astros);
