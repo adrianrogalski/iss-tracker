@@ -46,6 +46,6 @@ public class Person {
 
     @Override
     public String toString() {
-        return "name: " + name + " craft: '" + craft;
+        return "name: " + name + " craft: " + craft;
     }
 }

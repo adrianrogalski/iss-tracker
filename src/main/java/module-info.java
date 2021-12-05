@@ -2,7 +2,6 @@ module com.example.isstracker {
     requires javafx.controls;
     requires javafx.fxml;
 
-    requires org.controlsfx.controls;
     requires java.net.http;
     requires java.naming;
     requires java.sql;
@@ -14,7 +13,7 @@ module com.example.isstracker {
     requires org.hibernate.commons.annotations;
     requires java.persistence;
 
-    opens com.example.isstracker.controller to javafx.fxml;
+    opens com.example.isstracker.controller to javafx.fxml, org.hibernate.orm.core, com.fasterxml.jackson.databind;
     opens com.example.isstracker.model.issnow to org.hibernate.orm.core, com.fasterxml.jackson.databind;
     opens com.example.isstracker.model.astros to org.hibernate.orm.core, com.fasterxml.jackson.databind;
 

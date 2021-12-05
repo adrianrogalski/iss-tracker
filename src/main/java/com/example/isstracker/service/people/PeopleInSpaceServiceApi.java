@@ -64,7 +64,7 @@ public class PeopleInSpaceServiceApi implements PeopleInSpaceService {
     @Override
     public List<Person> peopleOnIss() {
         Session session = factory.openSession();
-        List<Astros> astrosDatabase = session.createQuery("from Astros").getResultList();
+        List<Astros> astrosDatabase = session.createQuery("from Person where craft = 'iss'").getResultList();
         if (astrosDatabase.isEmpty()) {
             try {
                 Astros astros = peopleInSpaceRepo.findByURI(ASTROS_URI).get();

@@ -16,7 +16,13 @@ public class IssLocationServiceApi implements IssLocationService {
     private Optional<IssNow> data;
     public IssLocationServiceApi(SessionFactory factory) {
         this.factory = factory;
+        try {
+            data = issNowRepo.findByURI(ISS_URI);
+        } catch (InterruptedException | IOException e) {
+            e.printStackTrace();
+        }
     }
+
 
     @Override
     public void getCurrentIssData() {
