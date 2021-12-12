@@ -8,7 +8,6 @@ import java.util.UUID;
 @Table(name = "iss")
 public class IssNow {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
     private String message;
@@ -21,6 +20,7 @@ public class IssNow {
     }
 
     public IssNow(String message, long timestamp, IssPosition iss_position) {
+        this.id = UUID.randomUUID();
         this.message = message;
         this.timestamp = timestamp;
         this.iss_position = iss_position;

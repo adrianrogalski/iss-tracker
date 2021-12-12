@@ -8,12 +8,12 @@ import java.util.UUID;
 @Table(name = "iss_position")
 public class IssPosition{
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     private String latitude;
     private String longitude;
 
     public IssPosition(String latitude, String longitude) {
+        this.id = UUID.randomUUID();
         this.latitude = latitude;
         this.longitude = longitude;
     }

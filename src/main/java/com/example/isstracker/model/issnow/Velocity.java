@@ -11,13 +11,13 @@ import java.util.UUID;
 @Table(name = "velocities")
 public class Velocity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     private double value;
     private long timestamp;
     private long deltaTime;
 
     public Velocity(double value, long timestamp, long deltaTime) {
+        this.id = UUID.randomUUID();
         this.value = value;
         this.timestamp = timestamp;
         this.deltaTime = deltaTime;

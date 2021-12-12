@@ -8,12 +8,12 @@ import java.util.UUID;
 @Table(name = "people_info")
 public class Person {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     private String name;
     private String craft;
 
     public Person(String name, String craft) {
+        this.id = UUID.randomUUID();
         this.name = name;
         this.craft = craft;
     }

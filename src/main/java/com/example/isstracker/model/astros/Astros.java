@@ -7,9 +7,7 @@ import java.util.*;
 @Table(name = "people_in_space")
 public class Astros {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-
     private String message;
     private int number;
     @OneToMany(cascade = CascadeType.ALL)
@@ -18,6 +16,7 @@ public class Astros {
     private List<Person> people;
 
     public Astros(String message, Integer number, List<Person> name) {
+        this.id = UUID.randomUUID();
         this.message = message;
         this.number = number;
         this.people = name;
