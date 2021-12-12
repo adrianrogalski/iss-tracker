@@ -33,18 +33,17 @@ public class IssPosition{
         return id;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         IssPosition that = (IssPosition) o;
-        return id.equals(that.id) && Objects.equals(latitude, that.latitude) && Objects.equals(longitude, that.longitude);
+        return id.equals(that.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, latitude, longitude);
+        return Objects.hash(id);
     }
 
     @Override

@@ -52,12 +52,11 @@ public class Velocity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Velocity velocity = (Velocity) o;
-        return Double.compare(velocity.value, value) == 0 && timestamp == velocity.timestamp && deltaTime == velocity.deltaTime && id.equals(velocity.id);
+        return id.equals(velocity.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, value, timestamp, deltaTime);
+        return Objects.hash(id);
     }
-
 }

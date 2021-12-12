@@ -47,12 +47,12 @@ public class IssNow {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         IssNow issNow = (IssNow) o;
-        return timestamp == issNow.timestamp && id.equals(issNow.id) && Objects.equals(message, issNow.message) && Objects.equals(iss_position, issNow.iss_position);
+        return id.equals(issNow.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, message, timestamp, iss_position);
+        return Objects.hash(id);
     }
 
     @Override

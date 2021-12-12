@@ -34,14 +34,14 @@ public class Person {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Person)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
-        return id.equals(person.id) && Objects.equals(name, person.name) && Objects.equals(craft, person.craft);
+        return id.equals(person.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, craft);
+        return Objects.hash(id);
     }
 
     @Override

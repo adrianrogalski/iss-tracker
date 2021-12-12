@@ -41,13 +41,13 @@ public class Astros {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Astros)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         Astros astros = (Astros) o;
-        return number == astros.number && id.equals(astros.id) && Objects.equals(message, astros.message) && Objects.equals(people, astros.people);
+        return id.equals(astros.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, message, number, people);
+        return Objects.hash(id);
     }
 }
