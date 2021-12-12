@@ -13,12 +13,12 @@ public class IssPosition{
     private String longitude;
 
     public IssPosition(String latitude, String longitude) {
-        this.id = UUID.randomUUID();
         this.latitude = latitude;
         this.longitude = longitude;
     }
 
     public IssPosition() {
+        this.id = UUID.randomUUID();
     }
 
     public Double getLatitude() {

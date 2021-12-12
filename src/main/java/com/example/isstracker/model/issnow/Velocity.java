@@ -24,7 +24,7 @@ public class Velocity {
     }
 
     public Velocity() {
-
+        this.id = UUID.randomUUID();
     }
 
     public UUID getId() {

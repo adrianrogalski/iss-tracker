@@ -17,10 +17,10 @@ public class IssNow {
     private IssPosition iss_position;
 
     public IssNow() {
+        this.id = UUID.randomUUID();
     }
 
     public IssNow(String message, long timestamp, IssPosition iss_position) {
-        this.id = UUID.randomUUID();
         this.message = message;
         this.timestamp = timestamp;
         this.iss_position = iss_position;

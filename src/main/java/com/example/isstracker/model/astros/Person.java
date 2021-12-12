@@ -13,12 +13,12 @@ public class Person {
     private String craft;
 
     public Person(String name, String craft) {
-        this.id = UUID.randomUUID();
         this.name = name;
         this.craft = craft;
     }
 
     public Person() {
+        this.id = UUID.randomUUID();
     }
 
     public String getName() {

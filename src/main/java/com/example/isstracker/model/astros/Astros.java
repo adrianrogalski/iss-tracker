@@ -16,13 +16,13 @@ public class Astros {
     private List<Person> people;
 
     public Astros(String message, Integer number, List<Person> name) {
-        this.id = UUID.randomUUID();
         this.message = message;
         this.number = number;
         this.people = name;
     }
 
     public Astros() {
+        this.id = UUID.randomUUID();
     }
 
     public String getMessage() {
